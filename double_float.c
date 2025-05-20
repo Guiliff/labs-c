@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Este código mostra a diferença de precisão entre o float e double.
+// Este programa mostra a diferença de precisão entre o float e double.
 // This program demonstrates the difference in precision between float and double
 
 int main(){
