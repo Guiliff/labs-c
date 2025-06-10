@@ -10,17 +10,17 @@ Registrar o aprendizado de forma prática e acessível, facilitando a revisão e
 
 Mais arquivos e testes serão adicionados conforme avanço nos estudos.
 
-## 🎮 Exemplo: Jogo de Adivinhação
+## 🎮 Exemplo: Jogo da Forca
 
-Meu primeiro projeto mais completo em C foi um [guessing game](https://github.com/Guiliff/labs-c/blob/main/guessing_game.c), que evoluiu de uma versão simples para uma versão aprimorada.  
-O jogo atualizado conta com:
+Um dos meus primeiros projetos mais completos em C foi o [Jogo da Forca](https://github.com/Guiliff/labs-c/tree/main/Game%20Hangman), desenvolvido como prática para consolidar conhecimentos de manipulação de strings, controle de fluxo e uso de arrays.  
+O jogo conta com:
 
-- Geração aleatória de números usando rand()
-- Seleção de nível de dificuldade (fácil, médio, difícil)
-- Controle de tentativas
-- Mensagens dinâmicas de orientação ao usuário
+- Banco de palavras pré-definido
+- Exibição progressiva da forca a cada erro
+- Leitura e validação de letras já digitadas
+- Feedback visual para acertos e erros
 
-Foi uma ótima oportunidade para praticar estruturas condicionais, laços, operadores lógicos e manipulação de entrada com scanf.
+Esse projeto foi uma ótima forma de exercitar estruturas fundamentais e aprimorar a lógica de programação.
 
 ---
 
@@ -34,14 +34,14 @@ To document knowledge in a practical and accessible way, making it easier to rev
 
 More files and experiments will be added as I progress in my studies.
 
-## 🎮 Example: Guessing Game
+## 🎮 Example: Hangman Game
 
-One of my first more complete C programs was a [guessing game](https://github.com/Guiliff/labs-c/blob/main/guessing_game.c), which started simple and evolved into a more polished version.  
-The improved game includes:
+One of my first more complete C projects was the [Hangman Game](https://github.com/Guiliff/labs-c/tree/main/Game%20Hangman), created as practice to reinforce concepts like string manipulation, control flow, and array usage.  
+The game features:
 
-- Random number generation using rand()
-- Difficulty levels (easy, medium, hard)
-- Attempt limits based on difficulty
-- Dynamic feedback messages to guide the player
+- A predefined word bank
+- Progressive hangman drawing with each wrong guess
+- Input validation and letter tracking
+- Visual feedback for correct and incorrect guesses
 
-This was a great exercise to practice conditionals, loops, logical operations, and user input handling with scanf.
+This was a great exercise to apply fundamental structures and sharpen problem-solving skills.
