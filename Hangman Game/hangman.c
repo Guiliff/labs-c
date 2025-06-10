@@ -11,6 +11,7 @@ void printingman();
 int hang();
 int win();
 void secretword();
+void newword();
 //
 
 char sw[20];
@@ -21,6 +22,35 @@ void welcome(){
     printf("\n--------------------------------\n");
     printf("            HANGMAN  \n");
     printf("--------------------------------\n");
+}
+
+void newword(){
+    char yes;
+
+    printf("Would you like to add a new word to the game? (Y/N)?");
+    scanf( " %c", &yes);
+    if(yes == 'Y'){
+        char addword[20];
+        printf("What's the new word?");
+        scanf("%s", addword);
+
+        FILE* f;
+        f = fopen("secretswords.txt", "r+");
+        if(f == 0){
+        printf("Sorry, the database is unavailable.\n\n");
+        exit(1);
+    }
+        int qtd;
+        fscanf(f, "%d", &qtd);
+        qtd++;
+
+        fseek(f, 0, SEEK_SET);
+        fprintf(f, "%d", qtd);
+        fseek(f, 0, SEEK_END);
+
+        fprintf(f, "\n%s", addword);
+        fclose(f);
+    }
 }
 
 void secretword(){
@@ -114,6 +144,8 @@ int main(){
         shot();
 
     } while(!win() && !hang());
+
+    newword();
 
     return 0;
 }
