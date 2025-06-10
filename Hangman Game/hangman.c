@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <ctype.h>
 
 //I can include a .h file for this
 void welcome();
@@ -12,6 +13,7 @@ int hang();
 int win();
 void secretword();
 void newword();
+int fault();
 //
 
 char sw[20];
@@ -51,6 +53,9 @@ void newword(){
         fprintf(f, "\n%s", addword);
         fclose(f);
     }
+    else{
+        printf("\nOk. Thanks for playing. See you next time!\n");
+    }
 }
 
 void secretword(){
@@ -71,14 +76,30 @@ void secretword(){
         fscanf(f, "%s", sw);
     }
 
+    for (int i = 0; i < strlen(sw); i++) {
+        sw[i] = tolower(sw[i]);
+    }
+
     fclose(f);
 }
 
 void shot(){
     char guess;
+    printf("Type a letter: ");
     scanf(" %c", &guess); //Correcting a buffer error here
-    guess2 [userattempts] = guess;
-    userattempts++;
+    guess = tolower(guess);
+    
+    if (wasguessed(guess)){
+        printf("You already tried the letter '%c'. Try another one.\n", guess);
+        return;
+    }
+    if (userattempts < sizeof(guess2)){
+        guess2[userattempts] = guess;
+        userattempts++;
+    }
+    else{
+        printf("You've exceeded the number of attempts\n");
+    }
 }
 
 int wasguessed(char letter){
@@ -94,6 +115,16 @@ int wasguessed(char letter){
 }
 
 void printingman(){
+
+    int incorrect = fault();
+    printf("       _______\n");
+    printf("      |/      |\n");
+    printf("      |      %c%c%c\n", (incorrect>=1 ? '(' : ' '), (incorrect>=1 ? '_' : ' '), (incorrect>=1 ? ')' : ' '));
+    printf("      |      %c%c%c\n", (incorrect>=3 ? '\\' : ' '), (incorrect>=2 ? '|' : ' '), (incorrect>=3 ? '/' : ' '));
+    printf("      |       %c\n", (incorrect>=2 ? '|' : ' '));
+    printf("      |      %c %c\n", (incorrect>=4 ? '/' : ' '), (incorrect>=4 ? '\\' : ' '));
+    printf("     _|___\n\n");
+
     for (int i=0; i<strlen(sw); i++){
       
         int found = wasguessed(sw[i]);
@@ -107,7 +138,7 @@ void printingman(){
     printf("\n");
 }
 
-int hang(){
+int fault(){
     int incorrect = 0;
 
     for(int i=0; i<userattempts; i++){
@@ -121,7 +152,11 @@ int hang(){
         }
         if (!okword) incorrect++;
     }
-    return incorrect >=5;
+    return incorrect;
+}
+
+int hang(){
+    return fault() >=5;
 }
 
 int win(){
@@ -144,6 +179,13 @@ int main(){
         shot();
 
     } while(!win() && !hang());
+
+    if(win()){
+        printf("\nCongratulations!! You won!\n\n");
+    }
+    else{
+        printf("\nOh no... You were hanged. The secret word is - %s -\n\n", sw);
+    }
 
     newword();
 
